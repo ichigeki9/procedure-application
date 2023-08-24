@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplikacja Procedurki v4</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <div class="box_window ">
+    <form>
+      <h2>Dane Pacjenta</h1>
+
+        <div class="form-box">
+          <label for="patientName">Imię i Nazwisko Pacjenta:</label>
+          <input type="text" id="patientName" placeholder="Imie i nazwisko">
+          <p class="error-text">error</p>
+        </div>
+        <div class="form-box">
+          <label for="patientPesel">Pesel Pacjenta:</label>
+          <input type="text" id="patientPesel" placeholder="Pesel">
+          <p class="error-text">error</p>
+        </div>
+        <div class="form-box">
+          <label for="patientAdress">Adres Pacjenta:</label>
+          <input type="text" id="patientAdress" placeholder="Kod Miejscowość Ulica">
+          <p class="error-text">error</p>
+        </div>
+        <div class="form-box">
+          <label for="patientTel">Telefon Pacjenta:</label>
+          <input type="text" id="patientTel" placeholder="Numer Tel">
+          <p class="error-text">error</p>
+        </div>
+
+        <div class="control-buttons">
+          <button class="clear">Wyczyść</button>
+          <button class="next">Dalej</button>
+
+        </div>
+        <button class="close">x</button>
+
+
+    </form>
+  </div>
+
+  <div class="box_window-two ">
+    <form>
+      <h2>Dane do Specyfikacji</h1>
+
+        <div class="form-box-two time">
+          <label for="time">Czas pobytu pacjenta:</label>
+          <select id="time">
+            <option value="" selected>Wybierz</option>
+            <option value="200">Do godziny</option>
+            <option value="400">1-3 h</option>
+            <option value="600">3-6 h</option>
+            <option value="800">Powyżej 6 h</option>
+          </select>
+        </div>
+
+        <div class="form-box-two">
+          <label for="porada">Porada:</label>
+          <select id="porada">
+            <option value="150">Ambulatoryjna</option>
+            <option value="180">Zabiegowa</option>
+            <option value="330">Porada Ambulatoryjna i Zabiegowa</option>
+          </select>
+        </div>
+
+        <div class="form-box-two">
+          <label for="konsSpec">Konsultacja Specjalistyczna:</label>
+          <select class="konsSpec" id="konsSpec">
+            <option value="" selected>Brak</option>
+            <option value="200">Internistyczna</option>
+            <option value="200">Ortopedyczna</option>
+            <option value="200">Chirurgiczna</option>
+            <option value="200">Neurochirurgiczna</option>
+          </select>
+        </div>
+
+        <div class="transpCheck">
+          <input type="checkbox" id="transport" name="transport">
+          <label for="transport">Transport</label>
+        </div>
+
+        <div class="dataCheck">
+          <input type="checkbox" id="dataCheck" name="dataCheck">
+          <label for="dataCheck">Dodaj dzisiejszą date</label>
+        </div>
+
+        <div class="transpViewbox hideTranspBox">
+          <div class="form-box-two">
+            <label for="typeTransport">Rodzaj Transportu:</label>
+            <select class="typeTransport" id="typeTransport">
+              <option value="" selected>Brak</option>
+              <option value="120">Kierowca + Ratownik w godz. 7:00 - 22:00</option>
+              <option value="150">Kierowca + Ratownik w godz. 22:00 - 7:00</option>
+              <option value="150">Kierowca + Ratownik w dni ustawowo wolne</option>
+            </select>
+          </div>
+
+          <div class="transpDoctorCheck">
+            <input type="checkbox" id="transpDoctorCheck" name="transpDoctorCheck">
+            <label for="transpDoctorCheck">Transport z lekarzem</label>
+          </div>
+
+          <div class="transp">
+            <label for="transpTime">Czas transportu:</label>
+            <input type="number" id="transpTime" placeholder="Czas w godzinach">
+
+            <label for="transpDist">Dystans transportu:</label>
+            <input type="number" id="transpDist" placeholder="Dystans w km">
+          </div>
+
+        </div>
+
+        <div class="control-buttons-two">
+          <button class="clear-two">Wyczyść</button>
+          <button class="generujBtn">Generuj</button>
+
+        </div>
+        <button class="close-two">x</button>
+
+
+    </form>
+  </div>
+
+  <div class="top">
+    <div class="textBox">
+      <ul></ul>
+    </div>
+    <h1>Procedury</h1>
+
+    <p class="procField"></p>
+
+    <div class="btns">
+      <button class="reset">Resetuj</button>
+      <button class="copy">Kopiuj</button>
+      <button class="genBtn">Generuj Specyfikacje</button>
+    </div>
+  </div>
+
+
+
+  <section class="container">
+    <div class="container_one">
+      <fieldset class="badaniaLabo">
+        <legend>Badania laboratoryjne :</legend>
+
+        <div>
+          <input type="checkbox" id="aptt" name="aptt" proc="G11," priceLab="16">
+          <label for="aptt">APTT</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="alat" name="alat" proc="I17," priceLab="15">
+          <label for="alat">ALAT</label>
+        </div>
+        <div>
+          <input type="checkbox" id="aspat" name="aspat" proc="I19," priceLab="15">
+          <label for="aspat">ASPAT</label>
+        </div>
+        <div>
+          <input type="checkbox" id="morfologia" name="morfologia" proc="C53," priceLab="20">
+          <label for="morfologia">Morfologia</label>
+        </div>
+        <div>
+          <input type="checkbox" id="gazometria" name="gazometria" proc="89.661," priceLab="28">
+          <label for="gazometria">Gazometria</label>
+        </div>
+        <div>
+          <input type="checkbox" id="mocz" name="mocz" proc="A01," priceLab="20">
+          <label for="mocz">Mocz</label>
+        </div>
+        <div>
+          <input type="checkbox" id="glukoza" name="glukoza" proc="L43," priceLab="15">
+          <label for="glukoza">Glukoza</label>
+        </div>
+        <div>
+          <input type="checkbox" id="kreatynina" name="kreatynina" proc="M37," priceLab="15">
+          <label for="kreatynina">Kreatynina</label>
+        </div>
+        <div>
+          <input type="checkbox" id="mocznik" name="mocznik" proc="N13," priceLab="15">
+          <label for="mocznik">Mocznik</label>
+        </div>
+        <div>
+          <input type="checkbox" id="jonogram" name="jonogram" proc="N45,O35," priceLab="20">
+          <label for="jonogram">Jonogram</label>
+        </div>
+        <div>
+          <input type="checkbox" id="pt" name="pt" proc="G21," priceLab="16">
+          <label for="pt">PT</label>
+        </div>
+        <div>
+          <input type="checkbox" id="d-dimery" name="d-dimery" proc="G49," priceLab="45">
+          <label for="d-dimery">D-dimery</label>
+        </div>
+        <div>
+          <input type="checkbox" id="amylaza" name="amylaza" proc="I25," priceLab="15">
+          <label for="amylaza">Amylaza</label>
+        </div>
+        <div>
+          <input type="checkbox" id="crp" name="crp" proc="I81," priceLab="18">
+          <label for="crp">CRP</label>
+        </div>
+        <div>
+          <input type="checkbox" id="bilirubina" name="bilirubina" proc="I89," priceLab="15">
+          <label for="bilirubina">Bilirubina</label>
+        </div>
+        <div>
+          <input type="checkbox" id="lipaza" name="lipaza" proc="M67," priceLab="15">
+          <label for="lipaza">Lipaza</label>
+        </div>
+        <div>
+          <input type="checkbox" id="troponina" name="troponina" proc="O61," priceLab="37">
+          <label for="troponina">Troponina</label>
+        </div>
+        <div>
+          <input type="checkbox" id="alkohol" name="alkohol" proc="P31," priceLab="20">
+          <label for="alkohol">Alkohol</label>
+        </div>
+        <div>
+          <input type="checkbox" id="covid" name="covid" proc="V100," priceLab="100">
+          <label for="covid">Covid</label>
+        </div>
+        <div>
+          <input type="checkbox" id="ck" name="ck" proc="M18," priceLab="15">
+          <label for="ck">CK</label>
+        </div>
+        <div>
+          <input type="checkbox" id="prokalcytonina" name="prokalcytonina" proc="N58," priceLab="100">
+          <label for="prokalcytonina">Prokalcytonina</label>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="inne">
+        <legend>Inne:</legend>
+
+        <div>
+          <input type="checkbox" id="podst" name="pods" proc="89.00,89.04,89.71,89.73,">
+          <label for="pods">Podstawowe</label>
+        </div>
+        <div>
+          <input type="checkbox" id="konsultacja" name="konsultacja" proc="89.02,">
+          <label for="konsultacja">Konsultacja</label>
+        </div>
+        <div>
+          <input type="checkbox" id="badTemp" name="badTemp" proc="99.99902,">
+          <label for="badTemp">Badanie Temperatury</label>
+        </div>
+        <div>
+          <input type="checkbox" id="ekg" name="ekg" proc="89.522,">
+          <label for="ekg">EKG</label>
+        </div>
+        <div>
+          <input type="checkbox" id="cewnikowanieP" name="cewnikowanieP" proc="57.01,">
+          <label for="cewnikowanieP">Cewnikowanie Pęcherza</label>
+        </div>
+        <div>
+          <input type="checkbox" id="monit" name="monit" proc="89.540,">
+          <label for="monit">Monitorowanie</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tlenoterapia" name="tlenoterapia" proc="93.96,">
+          <label for="tlenoterapia">Tlenoterapia</label>
+        </div>
+        <div>
+          <input type="checkbox" id="sonda do żołądka" name="sonda do żołądka" proc="96.07,">
+          <label for="sonda do żołądka">Sonda do żołądka</label>
+        </div>
+        <div>
+          <input type="checkbox" id="płukanie" name="Płukanie żołądka" proc="96.34,">
+          <label for="Płukanie żołądka">Płukanie żołądka</label>
+        </div>
+        <div>
+          <input type="checkbox" id="ogrzewaniePacj" name="ogrzewaniePacj" proc="99.852,">
+          <label for="ogrzewaniePacj">Ogrzewanie Pacjenta</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="resuscytacja">
+        <legend>Resuscytacja</legend>
+
+        <div>
+          <input type="checkbox" id="sedacja" name="sedacja" proc="100.51">
+          <label for="sedacja">Sedacja i nadzór</label>
+        </div>
+        <div>
+          <input type="checkbox" id="resuscytacjaBP" name="resuscytacjaBP" proc="93.932">
+          <label for="resuscytacjaBP">Resuscytacja</label>
+        </div>
+        <div>
+          <input type="checkbox" id="znieczulDozyl" name="znieczulDozylP30" proc="100.10">
+          <label for="znieczulDozyl">Znieczulenie Dożylne pow.30min</label>
+        </div>
+        <div>
+          <input type="checkbox" id="znieczulDozyl" name="znieczulDozyl3-6" proc="100.11">
+          <label for="znieczulDozyl">Znieczulenie Dożylne 30-60min</label>
+        </div>
+        <div>
+          <input type="checkbox" id="resp" name="resp" proc="93.9">
+          <label for="resp">Respiratoroterapia</label>
+        </div>
+        <div>
+          <input type="checkbox" id="intubacja" name="intubacja" proc="96.04,">
+          <label for="intubacja">Intubacja</label>
+        </div>
+        <div>
+          <input type="checkbox" id="wentWspRur" name="wentWspRur" proc="96.71">
+          <label for="wentWspRur">Wentylacja wspomagana przez rurkę</label>
+        </div>
+        <div>
+          <input type="checkbox" id="przywRytZat" name="przywRytZat" proc="99.623">
+          <label for="przywRytZat">Przywrócenie rytmu zatokowego</label>
+        </div>
+        <div>
+          <input type="checkbox" id="defibrylacja" name="defibrylacja" proc="99.624">
+          <label for="defibrylacja">Defibrylacja</label>
+        </div>
+        <div>
+          <input type="checkbox" id="innaWenMech" name="innaWenMech" proc="93.92">
+          <label for="innaWenMech">Inna wentylacja mechaniczna</label>
+        </div>
+        <div>
+          <input type="checkbox" id="ProwRKO" name="ProwRKO" proc="99.601">
+          <label for="ProwRKO">Prowadzenie RKO</label>
+        </div>
+
+
+      </fieldset>
+    </div>
+    <!-- ------------------------------------- -->
+
+    <div class="container_two">
+      <fieldset class="farmakoterapia">
+        <legend>Farmakoterapia:</legend>
+
+        <div>
+          <input type="checkbox" id="wklucie" name="wklucie" proc="38.93,">
+          <label for="wklucie">Cewnikowanie Żył</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="doustna" name="doustna" proc="99.97900,">
+          <label for="doustna">Farmakoterapia Doustna</label>
+        </div>
+        <div>
+          <input type="checkbox" id="dozylna" name="dozylna" proc="99.97904,">
+          <label for="dozylna">Farmakoterapia Dożylna</label>
+        </div>
+        <div>
+          <input type="checkbox" id="domiesniowa" name="domiesniowa" proc="99.97902,">
+          <label for="domiesniowa">Farmakoterapia Domięśniowa</label>
+        </div>
+        <div>
+          <input type="checkbox" id="srodskorna" name="srodskorna" proc="99.97905,">
+          <label for="srodskorna">Farmakoterapia Śródskórna</label>
+        </div>
+        <div>
+          <input type="checkbox" id="podskorna" name="podskorna" proc="99.97906,">
+          <label for="podskorna">Farmakoterapia Podskórna</label>
+        </div>
+        <div>
+          <input type="checkbox" id="podjezykowa" name="podjezykowa" proc="99.97907,">
+          <label for="podjezykowa">Farmakoterapia Podjęzykowa</label>
+        </div>
+        <div>
+          <input type="checkbox" id="doodbytnicza" name="doodbytnicza" proc="99.97909,">
+          <label for="doodbytnicza">Farmakoterapia Doodbytnicza</label>
+        </div>
+        <div>
+          <input type="checkbox" id="nebulizator" name="nebulizator" proc="99.97910,">
+          <label for="nebulizator">Farmakoterapia przy użyciu Nebulizatora</label>
+        </div>
+        <div>
+          <input type="checkbox" id="infuzjaElektrolitow" name="infuzjaElektrolitow" proc="99.18,">
+          <label for="infuzjaElektrolitow">Infuzja Elektrolitow</label>
+        </div>
+        <div>
+          <input type="checkbox" id="trankwilizator" name="trankwilizator" proc="99.26,">
+          <label for="trankwilizator">Wstrzyknięcie Trankwilizatora</label>
+        </div>
+        <div>
+          <input type="checkbox" id="anatoksyna" name="anatoksyna" proc="99.38,">
+          <label for="anatoksyna">Podanie Anatoksyny Przeciwtężcowej </label>
+        </div>
+
+      </fieldset>
+      <fieldset class="zabiegowe">
+        <legend>Zabiegowe:</legend>
+
+        <div>
+          <input type="checkbox" id="opatrunek" name="opatrunek" proc="93.57,">
+          <label for="opatrunek">Opatrunek</label>
+        </div>
+        <div>
+          <input type="checkbox" id="oczyszczRan" name="oczyszczRan" proc="86.289,">
+          <label for="oczyszczRan">Oczyszczanie Rany</label>
+        </div>
+        <div>
+          <input type="checkbox" id="szycied4" name="szycied4" proc="86.52,">
+          <label for="szycied4">Szycie rany do 4cm</label>
+        </div>
+        <div>
+          <input type="checkbox" id="szyciep4" name="szyciep4" proc="86.53,">
+          <label for="szyciep4">Szycie rany pow. 4cm</label>
+        </div>
+        <div>
+          <input type="checkbox" id="znieczul" name="znieczul" proc="23.0402,">
+          <label for="znieczul">Znieczulenie</label>
+        </div>
+        <div>
+          <input type="checkbox" id="szycieLiczd4R" name="szycieLiczd4R" proc="86.54,">
+          <label for="szycieLiczd4R">Szycie licznych ran do 4 ran</label>
+        </div>
+        <div>
+          <input type="checkbox" id="szucieLiczPow4R" name="szucieLiczPow4R" proc="86.55,">
+          <label for="szucieLiczPow4R">Szycie licznych ran pow 4 ran</label>
+        </div>
+        <div>
+          <input type="checkbox" id="szycieNos" name="szycieNos" proc="21.81,">
+          <label for="szycieNos">Szycie ran nosa</label>
+        </div>
+        <div>
+          <input type="checkbox" id="szycieRanyWargi" name="szycieRanyWargi" proc="27.51,">
+          <label for="szycieRanyWargi">Szycie rany wargi</label>
+        </div>
+        <div>
+          <input type="checkbox" id="szycieRanyJamUst" name="szycieRanyJamUst" proc="27.52,">
+          <label for="szycieRanyJamUst">Szycie rany jamy ustnej</label>
+        </div>
+        <div>
+          <input type="checkbox" id="usunCialaObceInne" name="usunCialaObceInne" proc="98.20,">
+          <label for="usunCialaObceInne">Usunięcie ciała obcego Inne</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tampNosa" name="tampNosa" proc="21.03,">
+          <label for="tampNosa">Tamponada nosa</label>
+        </div>
+
+
+
+        <fieldset class="zabiegoweInn">
+          <legend>Zabiegowe inne:</legend>
+
+          <div>
+            <input type="checkbox" id="gipsowanie" name="gipsowanie" proc="93.53,">
+            <label for="gipsowanie">Gipsowanie</label>
+          </div>
+          <div>
+            <input type="checkbox" id="unierK-G" name="unierK-G" proc="93.5020,">
+            <label for="unierK-G">Unieruchomienie K górnej</label>
+          </div>
+          <div>
+            <input type="checkbox" id="unierK-D" name="unierK-D" proc="93.5022,">
+            <label for="unierK-D">Unieruchomienie K dolnej</label>
+          </div>
+          <div>
+            <input type="checkbox" id="innaSzyna" name="innaSztyna" proc="93.549,">
+            <label for="innaSztyna">Inna szyna unieruchamiajaca </label>
+          </div>
+          <div>
+            <input type="checkbox" id="zamkNastZwi" name="zamkNastZwi" proc="79.70,">
+            <label for="zamkNastZwi">Zamknięte nastawienie zwichnięcia</label>
+          </div>
+          <div>
+            <input type="checkbox" id="zamkNastZla" name="zamkNastZla" proc="79.00,">
+            <label for="zamkNastZla">Zamknięte nastawienie złamania</label>
+          </div>
+          <div>
+            <input type="checkbox" id="załKoł" name="załKoł" proc="93.521,">
+            <label for="załKoł">Założenie kołnierza szyjnego</label>
+          </div>
+        </fieldset>
+
+      </fieldset>
+
+      <fieldset class="pakiety">
+        <legend>Pakiety :</legend>
+
+        <div>
+          <input type="checkbox" id="a" name="a">
+          <label for="a"></label>
+        </div>
+        <div>
+          <input type="checkbox" id="a" name="a" proc="a">
+          <label for="a"></label>
+        </div>
+
+      </fieldset>
+
+
+
+    </div>
+
+
+    <fieldset class="diagObraz">
+      <legend>Diagnostyka Obrazowa:</legend>
+
+      <fieldset class="rtg">
+        <legend>RTG:</legend>
+
+        <div>
+          <input type="checkbox" id="rtgNosa" name="rtgNosa" proc="87.165," priceObraz="80">
+          <label for="rtgNosa">RTG Nosa</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgTwarzoczaszki" name="rtgTwarzoczaszki" proc="87.174," priceObraz="100">
+          <label for="rtgTwarzoczaszki">RTG Twarzoczaszki</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgCzaszki" name="rtgCzaszki" proc="87.176," priceObraz="100">
+          <label for="rtgCzaszki">RTG Czaszki</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgKrSzyj" name="rtgKrSzyj" proc="87.221," priceObraz="100">
+          <label for="rtgKrSzyj">RTG Kręgosłupa Szyjnego</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgKrPie" name="rtgKrPie" proc="87.231," priceObraz="100">
+          <label for="rtgKrPie">RTG Kręgosłupa Piersiowego</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgKrLK" name="rtgKrLK" proc="87.241," priceObraz="100">
+          <label for="rtgKrLK">RTG Kręgosłupa Lędźwiowo-Krzyż.</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgZeber" name="rtgZeber" proc="87.431," priceObraz="100">
+          <label for="rtgZeber">RTG Żeber</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgObojczykow" name="rtgObojczykow" proc="87.433," priceObraz="100">
+          <label for="rtgObojczykow">RTG Obojczyków</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="rtgMostka" name="rtgMostka" proc="87.432," priceObraz=100>
+          <label for="rtgMostka">RTG Mostka</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgKlp" name="rtgKlp" proc="87.440," priceObraz=100>
+          <label for="rtgKlp">RTG Klatki Piersiowej</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgJB" name="rtgJB" proc="88.191," priceObraz="50">
+          <label for="rtgJB">RTG Jamy Brzusznej</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgBarkRamie" name="rtgBarkRamie" proc="88.21," priceObraz="80">
+          <label for="rtgBarkRamie">RTG Barku i Ramienia</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgLokciaPrzedramienia" name="rtgLokciaPrzedramienia" proc="88.22,"
+            priceObraz="80">
+          <label for="rtgLokciaPrzedramienia">RTG Łokcia i przedramienia</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgNadgDloni" name="rtgNadgDloni" proc="88.23," priceObraz="80">
+          <label for="rtgNadgDloni">RTG Nadgarstka i Dłoni</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgMiednicyBiodra" name="rtgMiednicyBiodra" proc="88.26," priceObraz="100">
+          <label for="rtgMiednicyBiodra">RTG Miednicy i Biodra</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgUdaKolanaPodu" name="rtgUdaKolanaPodu" proc="88.27," priceObraz="80">
+          <label for="rtgUdaKolanaPodu">RTG Uda Kolana Podudzia</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgKostki" name="rtgKostki" proc="88.28," priceObraz="80">
+          <label for="rtgKostki">RTG Kostki i Stopy</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rtgLopatek" name="rtgLopatek" proc="88.331," priceObraz="50">
+          <label for="rtgLopatek">RTG Łopatek</label>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="tk">
+        <legend>Tomografia:</legend>
+
+        <div>
+          <input type="checkbox" id="tkGlowy" name="tkGlowy" proc="87.030," priceObraz="400">
+          <label for="tkGlowy">TK Głowy</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkGlTwarz" name="tkGlTwarz" proc="87.034," priceObraz="450">
+          <label for="tkGlTwarz">TK Twarzoczaszki</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkKrSzyj" name="tkKrSzyj" proc="88.383," priceObraz="400">
+          <label for="tkKrSzyj">TK Kregoslupa Szyjnego </label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkKlp" name="tkKlp" proc="87.410," priceObraz="500">
+          <label for="tkKlp">TK Klatki Piersiowej</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkBrzuMie" name="tkBrzuMie" proc="88.010," priceObraz="600">
+          <label for="tkBrzuMie">TK Brzucha lub Miednicy</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkKrSzyj" name="tkKrSzyj" proc="88.383," priceObraz="400">
+          <label for="tkKrSzyj">TK Kręgosłupa Szyjnego </label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkKrPie" name="tkKrPie" proc="88.385," priceObraz="400">
+          <label for="tkKrPie">TK Kręgosłupa Piersiowego </label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkKrLe" name="tkKrLe" proc="88.387," priceObraz="600">
+          <label for="tkKrLe">TK Kręgosłupa Lędźwiowo-Krzyżowego </label>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="tkKon">
+        <legend>TK kontrast:</legend>
+
+        <div>
+          <input type="checkbox" id="tkGloKon" name="tkGloKon" proc="87.049," priceObraz="450">
+          <label for="tkGloKon">TK Głowy z Kontrastem</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkKlpKon" name="tkKlpKon" proc="87.411," priceObraz="550">
+          <label for="tkKlpKon">TK Klatki Piersiowej bez i z kontrastem</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkBrzuKon" name="tkBrzuKon" proc="88.011," priceObraz="650">
+          <label for="tkBrzuKon">TK Brzucha bez i z kontrastem</label>
+        </div>
+        <div>
+          <input type="checkbox" id="tkInne" name="tkInne" proc="88.38," priceObraz="950">
+          <label for="tkInne">TK Politrauma, inne</label>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="usg">
+        <legend>USG:</legend>
+
+        <div>
+          <input type="checkbox" id="usgBrzu" name="usgBrzu" proc="88.761," priceObraz="180">
+          <label for="usgBrzu">USG Brzucha</label>
+        </div>
+
+      </fieldset>
+    </fieldset>
+
+  </section>
+
+  <!-- ---------------------SPECYFIKACJA ------------------------------- -->
+
+
+
+  </div>
+  <section class="specyfikacja hideSpec">
+
+    <div class="box_window-three">
+      <form>
+        <h2>Dodaj Usługę</h2>
+
+        <div class="form-box-three addService">
+          <label for="selectBoxService">Wybierz okno do któego chcesz dodać procedurę :</label>
+          <select id="selectBoxService">
+            <option value="" selected>Wybierz</option>
+            <option value="porada">Porada</option>
+            <option value="spejalistyczna">Konsultacja Specjalistyczna</option>
+            <option value="labolatoryjna">Diagnostyka Labolatoryjna</option>
+            <option value="obrazowa">Diagnostyka Obrazowa</option>
+            <option value="diagnostyka">Inna Diagnostyka</option>
+            <option value="transport">Transport</option>
+            <option value="inne">Inne Świadczenia/Pobyt w SOR</option>
+          </select>
+        </div>
+        <!-- Koszt 	Opis świadczenia -->
+
+        <div class="form-box">
+          <label for="nameService">Nazwa usługi:</label>
+          <input type="text" id="nameService" placeholder="Nazwa usługi">
+        </div>
+
+        <div class="form-box">
+          <label for="priceService">Koszt usługi:</label>
+          <input type="number" id="priceService" placeholder="Koszt usługi">
+        </div>
+
+
+
+
+        <div class="control-buttons-three">
+          <button class="clear-three">Wyczyść</button>
+          <button class="addServiceBtn">Dodaj</button>
+
+        </div>
+        <button class="close-three">x</button>
+
+
+      </form>
+    </div>
+
+    <div class="btn-box">
+      <button class="add-proc">Dodaj Procedure</button>
+      <button class="print-spec">Drukuj</button>
+    </div>
+
+
+
+    <div class="headerSpec">
+      <h1>Specyfikacja kosztów do faktury/paragonu za świadczenia udzielane w SOR</h1>
+    </div>
+
+
+
+    <div class="data">
+      <p class="name">Imię i nazwisko: </p>
+      <p class="adres">Adres: </p>
+      <p class="pesel">Pesel: </p>
+      <p class="telefon">Telefon: </p>
+    </div>
+    <div class="tabelka">
+      <table>
+        <tr>
+          <th class="fTab">Nazwa usługi</th>
+          <th>Koszt</th>
+          <th>Opis świadczenia</th>
+        </tr>
+        <tr>
+          <td class="fTab">Porada</td>
+          <td class="pricePorTab"></td>
+          <td class="descPorTab"></td>
+        </tr>
+        <tr>
+          <td class="fTab">Konsultacja Spejalistyczna</td>
+          <td class="priceKonsSpecTab"> </td>
+          <td class="descKonsSpecTab"> </td>
+        </tr>
+        <tr>
+          <td class="fTab">Diagnostyka Labolatoryjna</td>
+          <td class="priceLabTab"> </td>
+          <td class="descLabTab"></td>
+        </tr>
+        <tr>
+          <td class="fTab">Diagnostyka Obrazowa</td>
+          <td class="priceObrazTab"></td>
+          <td class="descObrazTab"></td>
+        </tr>
+        <tr>
+          <td class="fTab">Inna Diagnostyka</td>
+          <td class="priceOtherDiagTab"></td>
+          <td class="descOtherDiagTab"></td>
+        </tr>
+        <tr>
+          <td class="fTab">Transport</td>
+          <td class="priceTranspTab"></td>
+          <td class="descTranspTab"></td>
+        </tr>
+        <tr>
+          <td class="fTab">Inne Świadczenia/Pobyt w SOR</td>
+          <td class="priceTimeTab"></td>
+          <td class="descTimeTab"></td>
+        </tr>
+        <tr>
+          <td class="fTab">Razem</td>
+          <td class="sumTabAll"></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <div class="footerSpec">
+
+      <div class="signature">
+        <p>.......................................</p>
+        <p>podpis pracownika</p>
+        <p class="dateSpec">data............................</p>
+      </div>
+      <div class="signatureP">
+        <p>.................................</p>
+        <p>podpis pacjenta</p>
+      </div>
+    </div>
+
+    <section class="info">
+      <div class="date">
+        <p class="infoDate">Ełk, dnia .......................</p>
+      </div>
+      <div class="infoText">
+        <p>Zostałem poinformowany o tym, iż w ciągu 7 dni od daty zakończenia leczenia na oddziale SOR 1 Szpitala
+          Wojskowego z Przychodnią SP ZOZ w Ełku zobowiązuję się dostarczyć dowód ubezpieczenia lub pokryć całkowity koszt
+          leczenia w kasie szpitala zgodnie z kartą medyczną. W przypadku uchylania się od uiszczenia w/w zobowiązania 1
+          Szpital Wojskowy z Przychodnią SP ZOZ w Ełku wystąpi na drogę postępowania sądowego.</p>
+        <div class="signatureInfo">
+          <p>..........................................</p>
+        <p>Podpis pacjenta</p>
+      </div>
+      </div>
+
+      <div class="infodataPatient">
+        <p class="nameInfo">Imię i nazwisko: </p>
+        <p class="adresInfo">Adres: </p>
+        <p class="peselInfo">Pesel: </p>
+        <p class="telefonInfo">Telefon: </p>
+      </div>
+      <div class="infoPayment">
+        <p>Kasa Szpitala nr. tel. 261332985 </p>
+        <p>Budynek nr. 72 , I Piętro</p>
+        <p>nr konta 59 1130 1206 0028 9003 4420 0003</p>
+        <p>BGK oddz. Lublin</p>
+      </div>
+  
+    </section>
+  </section>
+
+
+
+  <footer>
+    <p>&copy; Aplikacja Procedury | Author: Patryk Karpiński </p>
+  </footer>
+
+
+  <script src="/js.js"></script>
+</body>
+
+
+
+
+
+
+
+<!-- <fieldset class="rtg">
+        <legend>RTG :</legend>
+    
+        <div>
+          <input type="checkbox" id="a" name="a" >
+          <label for="a">a</label>
+        </div>
+      
+    </fieldset> -->
+
+</html>
